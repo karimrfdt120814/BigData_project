@@ -3,16 +3,13 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.functions.{avg, col, lit, sum, when}
 
+object reading_mysql_tables {
 
-object first {
 
-  def main(args:Array[String]):Unit= {
-    //println("Hello Word")
+  def main(args:Array[String]):Unit={
 
-    val sc = new SparkContext("local[*]","demo")
+    val sc = new SparkContext("local[*]","mysql_jdbc")
 
-//val jdbcDf = spark.read.format("jdbc").jdbc("")
-    // Create a Spark Session
     val spark = SparkSession.builder()
       .appName("MySparkApp") // Set your application name
       .config("spark.some.config.option", "config-value") // Optional: Add any Spark configurations
@@ -37,33 +34,11 @@ object first {
       .option("driver", "com.mysql.cj.jdbc.Driver") // MySQL JDBC driver
       .load()
 
-    df.show(false)
-
-    val file = spark.read.option("header","true").csv("C:\\Users\\Asus\\Desktop\\UK_Txns.csv")
-    file.printSchema()
-
-    file.show(30,false)
-
-    file.rdd.getNumPartitions;
-
-    file.write.saveAsTable("uk_data");
-
-    //file.write.format("json").json("C:\\Users\\Asus\\Desktop\\JsonOut1")
-    val rdd = sc.parallelize(1 to 100)
-
-    var a= 10;
-
-   a=20;
-   // println("*****************printing a value: " +a)
-
-
-
-   // println("printing ********** :" +rdd.collect.foreach(println))
-   // rdd.reduce(_+_)
-
-    //val df = spark.sql("select * from orders")
-    //df.printSchema()
+    df.dropDuplicates("emp_id").orderBy("emp_id").show(false)
 
   }
-}
 
+
+
+
+}
