@@ -21,8 +21,8 @@ object SendDataFrameEmail {
     val df: DataFrame = spark.createDataFrame(data).toDF("id", "name", "age")
 
     // Save DataFrame to a temporary CSV file
-    val tempFilePath = "C:\\Users\\Asus\\Desktop\\mailSend1" // Change this to your desired path
-    df.write.option("header", "true").csv(tempFilePath)
+    val tempFilePath = "C:\\Users\\Asus\\Desktop\\senMail122" // Change this to your desired path
+    df.repartition(1).write.option("header", "true").csv(tempFilePath)
 
     // Send the email with the CSV attachment
     sendEmailWithAttachment(tempFilePath)
@@ -35,8 +35,8 @@ object SendDataFrameEmail {
     // Email configuration
     val host = "smtp.gmail.com" // Gmail SMTP host
     val port = "587" // or "465" for SSL
-    val username = "karimulla120.shaik814@gmail.com" // Your Gmail address
-    val password = "*****" // Your password or App Password
+    val username = "shaikgousyabegam786@gmail.com" // Your Gmail address
+    val password = "gousya18" // Your password or App Password
 
     // Set up the properties for the mail session
     val props = new Properties()

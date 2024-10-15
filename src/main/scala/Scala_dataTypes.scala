@@ -9,6 +9,14 @@ object Scala_dataTypes {
     val firstLetter:Char ='A'
     val message: String = "Hello, Scala!"
 
+    val s1:Option[String]=Some("Karimulla")
+    val s2:Option[String] = None
+
+    s1.map(_.length)
+    s2.map(_.length)
+
+    
+
   }
 
 }
