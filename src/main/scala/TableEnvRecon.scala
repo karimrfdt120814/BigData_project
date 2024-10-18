@@ -40,7 +40,7 @@ object TableEnvRecon {
     }
 
 
-    val outputTable = "count_reconciliation"
+    val outputTable = "count_reconciliation2"
     resultsDF.write
       .format("jdbc")
       .option("url", "jdbc:mysql://localhost:3306/olc_sql")
