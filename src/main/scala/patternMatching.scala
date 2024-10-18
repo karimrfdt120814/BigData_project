@@ -1,4 +1,5 @@
 object patternMatching {
+
   def main(args:Array[String]):Unit= {
 
     val day = "Saturday"
